@@ -1,0 +1,115 @@
+<!--?xml version="1.0" encoding="UTF-8"?-->
+<svg width="1200" height="300" viewBox="0 0 1200 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="безопасный российский мессенджер OLEG">
+  <defs>
+    <!-- Neon glow filter -->
+    <filter id="neon" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur1"></feGaussianBlur>
+      <feMerge>
+        <feMergeNode in="blur1"></feMergeNode>
+        <feMergeNode in="SourceGraphic"></feMergeNode>
+      </feMerge>
+    </filter>
+
+    <!-- Soft outer glow -->
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="10" result="g"></feGaussianBlur>
+      <feMerge>
+        <feMergeNode in="g"></feMergeNode>
+        <feMergeNode in="SourceGraphic"></feMergeNode>
+      </feMerge>
+    </filter>
+
+    <!-- Gradient for text -->
+    <linearGradient id="cyanGrad" x1="0" x2="1">
+      <stop offset="0" stop-color="#7efcff"></stop>
+      <stop offset="0.5" stop-color="#2fe7e7"></stop>
+      <stop offset="1" stop-color="#17a2ff"></stop>
+    </linearGradient>
+
+    <!-- Subtle metallic gradient for badge -->
+    <linearGradient id="metal" x1="0" x2="1">
+      <stop offset="0" stop-color="#1b1f26"></stop>
+      <stop offset="1" stop-color="#2b3a45"></stop>
+    </linearGradient>
+
+    <!-- Stroke gradient -->
+    <linearGradient id="strokeGrad" x1="0" x2="1">
+      <stop offset="0" stop-color="#00ffd5"></stop>
+      <stop offset="1" stop-color="#00aaff"></stop>
+    </linearGradient>
+
+    <!-- Rounded rect shadow -->
+    <filter id="cardShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feOffset dx="0" dy="6" result="off"></feOffset>
+      <feGaussianBlur in="off" stdDeviation="10" result="blur"></feGaussianBlur>
+      <feBlend in="SourceGraphic" in2="blur" mode="normal"></feBlend>
+    </filter>
+
+    <!-- small grain texture -->
+    <filter id="grain">
+      <feTurbulence baseFrequency="0.8" numOctaves="2" result="noise"></feTurbulence>
+      <feColorMatrix type="saturate" values="0" in="noise" result="mono"></feColorMatrix>
+      <feBlend in="SourceGraphic" in2="mono" mode="overlay"></feBlend>
+    </filter>
+
+    <!-- font-size variables via CSS not possible; set directly -->
+  </defs>
+
+  <!-- Transparent background (implicit). Optionally a faint vignette -->
+  <rect x="0" y="0" width="1200" height="300" fill="transparent"></rect>
+
+  <!-- Left badge (shield + signal) -->
+  <g transform="translate(80,60)">
+    <!-- shield base -->
+    <path d="M60 0 L110 20 L130 80 C95 140 25 140 0 80 L20 20 Z" fill="url(#metal)" stroke="url(#strokeGrad)" stroke-width="3" filter="url(#softGlow)"></path>
+    <!-- inner cyan fill -->
+    <path d="M60 10 L104 28 L120 80 C90 125 30 125 10 80 L26 28 Z" fill="url(#cyanGrad)" fill-opacity="0.08"></path>
+
+    <!-- stylized signal bars on shield -->
+    <rect x="52" y="60" width="6" height="30" rx="2" fill="#0ff" opacity="0.9"></rect>
+    <rect x="62" y="52" width="6" height="38" rx="2" fill="#2fe7e7" opacity="0.9"></rect>
+    <rect x="72" y="44" width="6" height="46" rx="2" fill="#17a2ff" opacity="0.95"></rect>
+
+    <!-- small highlight -->
+    <ellipse cx="70" cy="22" rx="28" ry="10" fill="white" fill-opacity="0.03"></ellipse>
+  </g>
+
+  <!-- Main title group -->
+  <g transform="translate(220,60)">
+    <!-- subtle glowing underline -->
+    <rect x="0" y="170" width="760" height="6" rx="3" fill="url(#cyanGrad)" opacity="0.14" filter="url(#neon)"></rect>
+
+    <!-- Large headline: two-line layout -->
+    <text x="0" y="46" font-family="Inter, Roboto, Arial, sans-serif" font-weight="700" font-size="36" fill="url(#cyanGrad)" filter="url(#neon)" letter-spacing="0.5">
+      безопасный российский
+    </text>
+
+    <text x="0" y="100" font-family="Inter, Roboto, Arial, sans-serif" font-weight="800" font-size="60" fill="#e6ffff" style="paint-order: stroke fill;" stroke="rgba(0,160,200,0.12)" stroke-width="2" letter-spacing="1">
+      мессенджер
+    </text>
+
+    <!-- OLEG logo text with neon outline -->
+    <text x="0" y="170" font-family="monospace, Menlo, monospace" font-weight="900" font-size="48" fill="url(#cyanGrad)" stroke="#003f5c" stroke-width="1.5" letter-spacing="2" style="text-transform:uppercase" filter="url(#neon)">
+      OLEG
+    </text>
+
+    <!-- small tagline / accent -->
+    <text x="220" y="156" font-family="Inter, Roboto, Arial, sans-serif" font-size="13" fill="#9be7ff" opacity="0.85">
+      приватность · шифрование · локальные сервера
+    </text>
+  </g>
+
+  <!-- Decorative corner lines to match Atomic Heart / retro -->
+  <g transform="translate(1000,20)" opacity="0.12">
+    <rect x="0" y="0" width="160" height="6" rx="3" fill="#17a2ff"></rect>
+    <rect x="0" y="20" width="120" height="4" rx="2" fill="#2fe7e7"></rect>
+    <rect x="0" y="40" width="80" height="3" rx="2" fill="#7efcff"></rect>
+  </g>
+
+  <!-- subtle noise overlay -->
+  <rect x="0" y="0" width="1200" height="300" fill="transparent" filter="url(#grain)" opacity="0.03"></rect>
+
+  <!-- accessibility: title/desc for screen readers -->
+  <title>безопасный российский мессенджер OLEG</title>
+  <desc>Логотип в ретрофутуристическом стиле: щит и неоновый текст "безопасный российский мессенджер OLEG". Прозрачный фон.</desc>
+</svg>
